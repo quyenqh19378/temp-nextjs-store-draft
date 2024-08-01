@@ -1,3 +1,5 @@
+"use client";
+
 import { LuShare2 } from "react-icons/lu";
 import { Button } from "../ui/button";
 
