@@ -5,6 +5,7 @@ import Image from "next/image";
 import FavoriteToggleButton from "@/components/products/FavoriteToggleButton";
 import ProductRating from "@/components/single-product/ProductRating";
 import AddToCart from "@/components/single-product/AddToCart";
+import ShareButton from "@/components/single-product/ShareButton";
 
 async function SingleProductPage({ params }: { params: { id: string } }) {
     console.log(params);
@@ -34,7 +35,10 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
                         <h1 className='capitalize text-3xl fond-bold'>
                             {name}
                         </h1>
-                        <FavoriteToggleButton productId={params.id} />
+                        <div className='flex  items-center gap-x-2'>
+                            <FavoriteToggleButton productId={params.id} />
+                            <ShareButton productId={product.id} name={name} />
+                        </div>
                     </div>
                     <ProductRating productId={params.id} />
                     <h4 className='text-xl mt-2'>{company}</h4>
