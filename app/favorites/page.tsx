@@ -4,7 +4,6 @@ import { fetchUserFavorites } from "@/utils/actions";
 
 async function FavoritesPage() {
     const favorites = await fetchUserFavorites();
-    console.log(favorites);
     if (favorites.length === 0)
         return <SectionTitle text='You have no favorites yet.' />;
     return (
