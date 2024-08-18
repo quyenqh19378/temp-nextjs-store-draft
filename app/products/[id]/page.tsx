@@ -53,13 +53,11 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
                     <p className='mt-6 leading-8 text-muted-foreground'>
                         {description}
                     </p>
-                    <AddToCart productId={params.id} />
+                    <AddToCart productId={product.id} />
                 </div>
             </div>
-            <>
-                <ProductReviews productId={params.id} />
-                {reviewDoesNotExist && <SubmitReview productId={params.id} />}
-            </>
+            <ProductReviews productId={params.id} />
+            <>{reviewDoesNotExist && <SubmitReview productId={params.id} />}</>
         </section>
     );
 }

@@ -547,22 +547,47 @@ export const removeCartItemAction = async (
         return renderError(error);
     }
 };
+
+// export const createOrderAction = async (prevState: any, formData: FormData) => {
+//     const user = await getAuthUser();
+//     let cartId: null | string = null;
+//     let orderId: null | string = null;
+//     try {
+//         const cart = await fetchOrCreateCart({
+//             userId: user.id,
+//             errorOnFailure: true,
+//         });
+//         cartId = cart.id;
+
+//         await db.order.deleteMany({
+//             where: {
+//                 clerkId: user.id,
+//                 isPaid: false,
+//             },
+//         });
+//         const order = await db.order.create({
+//             data: {
+//                 clerkId: user.id,
+//                 products: cart.numItemsInCart,
+//                 orderTotal: cart.orderTotal,
+//                 tax: cart.tax,
+//                 shipping: cart.shipping,
+//                 email: user.emailAddresses[0].emailAddress,
+//             },
+//         });
+//         orderId = order.id;
+//     } catch (error) {
+//         return renderError(error);
+//     }
+//     redirect(`/checkout?orderId=${orderId}&cartId=${cartId}`);
+// };
+
 export const createOrderAction = async (prevState: any, formData: FormData) => {
     const user = await getAuthUser();
-    let cartId: null | string = null;
-    let orderId: null | string = null;
     try {
         const cart = await fetchOrCreateCart({
             userId: user.id,
             errorOnFailure: true,
-        });
-        cartId = cart.id;
-
-        await db.order.deleteMany({
-            where: {
-                clerkId: user.id,
-                isPaid: false,
-            },
         });
         const order = await db.order.create({
             data: {
@@ -574,11 +599,16 @@ export const createOrderAction = async (prevState: any, formData: FormData) => {
                 email: user.emailAddresses[0].emailAddress,
             },
         });
-        orderId = order.id;
+
+        await db.cart.delete({
+            where: {
+                id: cart.id,
+            },
+        });
     } catch (error) {
         return renderError(error);
     }
-    redirect(`/checkout?orderId=${orderId}&cartId=${cartId}`);
+    redirect("/orders");
 };
 
 export const fetchUserOrders = async () => {
