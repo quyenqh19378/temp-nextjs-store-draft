@@ -3,7 +3,7 @@ import { formatCurrency } from "@/utils/format";
 import BreadCrumbs from "@/components/single-product/BreadCrumbs";
 import Image from "next/image";
 import FavoriteToggleButton from "@/components/products/FavoriteToggleButton";
-import ProductRating from "@/components/single-product/ProductRating";
+// import ProductRating from "@/components/single-product/ProductRating";
 import AddToCart from "@/components/single-product/AddToCart";
 import ShareButton from "@/components/single-product/ShareButton";
 import SubmitReview from "@/components/reviews/SubmitReview";
@@ -45,7 +45,7 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
                             <ShareButton productId={product.id} name={name} />
                         </div>
                     </div>
-                    <ProductRating productId={params.id} />
+                    {/* <ProductRating productId={params.id} /> */}
                     <h4 className='text-xl mt-2'>{company}</h4>
                     <p className='mt-3 text-md bg-muted inline-block p-2 rounded-md'>
                         {dollarsAmount}
