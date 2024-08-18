@@ -1,7 +1,7 @@
 "use client";
 
 import type { CartItemWithProduct } from "@/utils/types";
-import { Card } from "../ui/card";
+import { Card } from "@/components/ui/card";
 import { FirstColumn, FourthColumn, SecondColumn } from "./CartItemColumns";
 import ThirdColumn from "./ThirdColumn";
 
