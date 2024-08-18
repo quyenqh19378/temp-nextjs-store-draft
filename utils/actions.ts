@@ -101,7 +101,7 @@ export const createProductAction = async (
 
 export const fetchAdminProducts = async () => {
     await getAdminUser();
-    const products = db.product.findMany({
+    const products = await db.product.findMany({
         orderBy: {
             createdAt: "desc",
         },
@@ -165,7 +165,7 @@ export const updateProductAction = async (
 };
 
 export const updateProductImageAction = async (
-    prevState: { productId: string },
+    prevState: any,
     formData: FormData
 ) => {
     await getAuthUser();
